@@ -1,10 +1,11 @@
-import { GET_JOBS } from "../actions"
+import { GET_JOBS, GET_JOBS_ERROR, GET_JOBS_LOADING } from "../actions"
 
 
 const initialState = {
 
-    arrayRicerca: []
-
+    arrayRicerca: [],
+    loading: false,
+    error: false,
 }
 
 const resultReducer = function (currentState = initialState, action) {
@@ -15,6 +16,17 @@ const resultReducer = function (currentState = initialState, action) {
             return {
                 ...currentState,
                 arrayRicerca: action.payload
+            }
+
+        case GET_JOBS_LOADING:
+            return {
+                ...currentState,
+                loading: !currentState.loading
+            }
+        case GET_JOBS_ERROR:
+            return {
+                ...currentState,
+                error: !currentState.error
             }
 
         default: {

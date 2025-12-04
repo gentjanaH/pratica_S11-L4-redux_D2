@@ -1,7 +1,10 @@
 export const ADD_FAV_JOB = "ADD_FAV_JOB"
 export const REMOVE_FAV_JOB = "REMOVE_FAV_JOB"
 export const GET_JOBS = "GET_JOBS"
+export const GET_JOBS_LOADING = "GET_JOBS_LOADING"
+export const GET_JOBS_ERROR = "GET_JOBS_ERROR"
 
+const baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?search=";
 
 export const addFavJobAction = (data) => {
     return {
@@ -17,14 +20,14 @@ export const removeFavJobAction = (data) => {
     }
 }
 
-export const getJobsAction = (company) => {
+export const getJobsAction = (query) => {
 
     return (dispatch, getState) => {
         const currentState = getState()
         console.log("currentState", currentState)
 
 
-        fetch("https://strive-benchmark.herokuapp.com/api/jobs?company=" + company)
+        fetch(baseEndpoint + query + "&limit=20")
             .then((res) => {
                 if (res.ok) {
                     return res.json()
