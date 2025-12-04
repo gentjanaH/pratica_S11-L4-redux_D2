@@ -1,6 +1,7 @@
 import { Row, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
+import { addFavJobAction, removeFavJobAction } from "../redux/actions"
 
 const Job = ({ data }) => {
 
@@ -14,9 +15,9 @@ const Job = ({ data }) => {
   // funzione per il toggle
   const toggleFavorite = () => {
     if (isFavorite) {
-      dispatch({ type: "REMOVE_FAV_JOB", payload: data })
+      dispatch(removeFavJobAction(data))
     } else {
-      dispatch({ type: "ADD_FAV_JOB", payload: data })
+      dispatch(addFavJobAction(data))
     }
   }
 
